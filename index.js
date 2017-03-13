@@ -48,7 +48,7 @@ InsertQueryStream.prototype._transform = function transform (chunk, enc, callbac
 }
 
 InsertQueryStream.prototype._flush = function flush (callback) {
-  this.unshift(this.previous, true)
+  this.unshift(true)
   callback()
 }
 
