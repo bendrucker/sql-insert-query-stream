@@ -42,6 +42,10 @@ InsertQueryStream.prototype._transform = function transform (chunk, enc, callbac
   }
 
   if (this.previous) this.unshift()
+
+  var invalid = Object.keys(chunk).find((key) => !this.columns.includes(key))
+  if (invalid) return callback(new Error(`Invalid column: "${invalid}"`))
+
   this.previous = this.columns.map((column) => chunk[column])
 
   callback()

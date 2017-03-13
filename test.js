@@ -67,3 +67,18 @@ values
     t.end()
   }))
 })
+
+test('invalid column', function (t) {
+  t.plan(1)
+
+  toStream.obj([
+    {foo: 'bar'},
+    {bar: 'baz'}
+  ])
+  .pipe(InsertStream({
+    table: 'mesa'
+  }))
+  .on('error', function (err) {
+    t.ok(/Invalid column: "bar"/.test(err.message))
+  })
+})
