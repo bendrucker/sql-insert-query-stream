@@ -1,7 +1,7 @@
 {
   "name": "sql-insert-query-stream",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Transform stream that generates a bulk SQL insert query ",
   "license": "MIT",
   "repository": "bendrucker/sql-insert-query-stream",
