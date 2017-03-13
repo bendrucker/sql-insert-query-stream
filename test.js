@@ -8,7 +8,8 @@ var InsertStream = require('./')
 test('one column', function (t) {
   toStream.obj([
     {foo: 'bar'},
-    {foo: 'baz'}
+    {foo: 'baz'},
+    {foo: 'qux'}
   ])
   .pipe(InsertStream({
     table: 'mesa'
@@ -19,7 +20,8 @@ insert into "mesa"
   ("foo")
 values
   ("bar"),
-  ("baz");`.trim()
+  ("baz"),
+  ("qux");`.trim()
     )
 
     t.end()
