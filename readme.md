@@ -1,4 +1,4 @@
-# sql-insert-query-stream [![Build Status](https://travis-ci.org/bendrucker/sql-insert-query-stream.svg?branch=master)](https://travis-ci.org/bendrucker/sql-insert-query-stream)
+# sql-insert-query-stream [![Build Status](https://travis-ci.org/bendrucker/sql-insert-query-stream.svg?branch=master)](https://travis-ci.org/bendrucker/sql-insert-query-stream) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/sql-insert-query-stream.svg)](https://greenkeeper.io/)
 
 > A Transform stream that generates a bulk SQL insert query 
 
