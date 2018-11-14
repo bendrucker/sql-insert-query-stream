@@ -7,78 +7,78 @@ var InsertStream = require('./')
 
 test('one column', function (t) {
   toStream.obj([
-    {foo: 'bar'},
-    {foo: 'baz'},
-    {foo: 'qux'}
+    { foo: 'bar' },
+    { foo: 'baz' },
+    { foo: 'qux' }
   ])
-  .pipe(InsertStream({
-    table: 'mesa'
-  }))
-  .pipe(concat(function (data) {
-    t.equal(data, `
+    .pipe(InsertStream({
+      table: 'mesa'
+    }))
+    .pipe(concat(function (data) {
+      t.equal(data, `
 insert into "mesa"
   ("foo")
 values
   ("bar"),
   ("baz"),
   ("qux");`.trim()
-    )
+      )
 
-    t.end()
-  }))
+      t.end()
+    }))
 })
 
 test('one row', function (t) {
   toStream.obj([
-    {foo: 'bar'}
+    { foo: 'bar' }
   ])
-  .pipe(InsertStream({
-    table: 'mesa'
-  }))
-  .pipe(concat(function (data) {
-    t.equal(data, `
+    .pipe(InsertStream({
+      table: 'mesa'
+    }))
+    .pipe(concat(function (data) {
+      t.equal(data, `
 insert into "mesa"
   ("foo")
 values
   ("bar");`.trim()
-    )
+      )
 
-    t.end()
-  }))
+      t.end()
+    }))
 })
 
 test('multiple columns', function (t) {
   toStream.obj([
-    {foo: 'bar', baz: 1},
-    {foo: 'baz', baz: 2}
+    { foo: 'bar', baz: 1 },
+    { foo: 'baz', baz: 2 }
   ])
-  .pipe(InsertStream({
-    table: 'mesa'
-  }))
-  .pipe(concat(function (data) {
-    t.equal(data, `
+    .pipe(InsertStream({
+      table: 'mesa'
+    }))
+    .pipe(concat(function (data) {
+      t.equal(data, `
 insert into "mesa"
   ("foo", "baz")
 values
   ("bar", 1),
   ("baz", 2);`.trim()
-    )
+      )
 
-    t.end()
-  }))
+      t.end()
+    }))
 })
 
 test('invalid column', function (t) {
   t.plan(1)
 
   toStream.obj([
-    {foo: 'bar'},
-    {bar: 'baz'}
+    { foo: 'bar' },
+    { bar: 'baz' }
   ])
-  .pipe(InsertStream({
-    table: 'mesa'
-  }))
-  .on('error', function (err) {
-    t.ok(/Invalid column: "bar"/.test(err.message))
-  })
+    .pipe(InsertStream({
+      table: 'mesa'
+    }))
+    .on('error', function (err) {
+      t.ok(/Invalid column: "bar"/.test(err.message))
+    })
 })
